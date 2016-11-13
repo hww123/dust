@@ -1,13 +1,27 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    log = require("../log").logger("index"),
+    userService = require('../service/user/userService');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'DUST' });
+  res.render('welcome', { title: 'DUST' });
 });
 
 router.get('/login', function(req, res, next) {
   res.render('login/login', { message: 'this is a login page' });
+});
+
+router.post('/oauth', function(req, res, next) {
+  userService.get(req.body).then(function(user) {
+    log.info('验证成功，进行回调: ' + user.get('username'));
+  });
+  res.redirect('/index');
+});
+
+router.get('/index', function(req, res, next) {
+  res.render('index', { title: '首页' });
 });
 
 module.exports = router;
