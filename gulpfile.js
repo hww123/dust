@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
     gulpJade = require('gulp-jade'),
-    jade = require('jade');
+    jade = require('jade'),
+    gulpWatch = require('gulp-watch'),
+    batch = require('gulp-batch');
 
 gulp.task('jade', function() {
     return gulp.src('./**/*.jade')
@@ -30,4 +32,10 @@ gulp.task('bootstrap-css', function() {
             base: 'node_modules/bootstrap/dist'
         })
         .pipe(gulp.dest('public/stylesheets/bootstrap'));
+});
+
+gulp.task('watch-jade', function() {
+    gulpWatch('./**/*.jade', batch(function(e, done) {
+        gulp.start('jade', done);
+    }));
 });
