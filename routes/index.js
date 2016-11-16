@@ -16,8 +16,10 @@ router.get('/login', function(req, res, next) {
 router.post('/oauth', function(req, res, next) {
   userService.get(req.body).then(function(user) {
     log.info('验证成功，进行回调: ' + user.get('username'));
+    if (user) res.json({ error: false, data: user });
+  }).otherwise(function (err) {
+    res.status(500).json({error: true, data: {message: err.message}});
   });
-  res.redirect('/index');
 });
 
 router.get('/index', function(req, res, next) {
