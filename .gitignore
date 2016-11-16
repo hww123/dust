@@ -3,3 +3,4 @@ dist
 bundle
 *.html
 .DS_Store
+.vscode

@@ -2,6 +2,7 @@ var login = {
     login: function(payload) {
         $.ajax({
             method: 'post',
+            type: 'POST',
             url: 'oauth',
             data: payload
         })
