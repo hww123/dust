@@ -1,13 +1,14 @@
 var login = {
     login: function(payload) {
         $.ajax({
-            method: 'post',
             type: 'POST',
+            method: 'post',
             url: 'oauth',
             data: payload
         })
         .done(function(msg) {
             alert('save success!' + msg.data.id);
+            window.location.href = '/index';
         });
     }
 };

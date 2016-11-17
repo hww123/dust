@@ -20,6 +20,7 @@ router.post('/oauth', function(req, res, next) {
   }).otherwise(function (err) {
     res.status(500).json({error: true, data: {message: err.message}});
   });
+});
 
 router.get('/index', function(req, res, next) {
   res.render('index', { title: '首页' });
