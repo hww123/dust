@@ -1,5 +1,4 @@
-extends ../layout
-
+extends login-head
 
 block content
   .row
@@ -12,7 +11,4 @@ block content
           .form-group
             label 密码
             input.form-control(type='password' name='password')
-          button.btn.btn-default#login(type='submit') 登陆
-
-
-  script(src='javascripts/login/login.js')
+            a#login(type='submit') 登陆

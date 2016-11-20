@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     log = require("../log").logger("index"),
-    userService = require('../service/user/userService');
+    userService = require('../service/user/userService'),
+    helper = require('../util/helper');
 
 
 /* GET home page. */
@@ -24,6 +25,10 @@ router.post('/oauth', function(req, res, next) {
 
 router.get('/index', function(req, res, next) {
   res.render('index', { title: '首页' });
+});
+
+router.get('/page', function(req, res, next) {
+  res.json({ error: false, data: helper.getPage(req.query.id) });
 });
 
 module.exports = router;
