@@ -1,11 +1,11 @@
-var viewport = require('./app/viewport/index'),
-    $ = require('jquery');
+var $ = require('jquery'),
+    T = require('./app/tornado/tornado'),
+    getHash = function() {
+        return window.location.hash.slice(1);
+    };
 
-alert('come here showViewPort');
-var gobal = {
-    showViewPort: function() {
-       viewport.render('viewport/navbar', $('#navbar'));
-    }
-}
+$(window).on('hashchange', function() {
+    $('#content').html(T.loadTemplate(getHash()));
+});
 
-gobal.showViewPort();
+T.start('viewport');

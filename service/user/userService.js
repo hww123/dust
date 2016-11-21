@@ -1,5 +1,4 @@
 var models = require('../../db/init'),
-    log = require("../../log").logger("index"),
     save, get;
 
 save = function(obj) {
@@ -11,7 +10,7 @@ save = function(obj) {
 
 get = function(obj) {
     return models.user.forge(obj).fetch();
-}
+};
 
 module.exports = {
     save: save,
